@@ -114,7 +114,7 @@ This code splits the data into training and testing sets, with 80% for training 
 from sklearn.model_selection import train_test_split
 X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.2,random_state=0)
 ```
-Display a pie chart showing the percentage of data used for training and testing, helping you visualize the split.
+Display a pie chart showing the percentage of data used for training and testing, helping you visualize the split:
 
 ```bash
 import matplotlib.pyplot as plt
@@ -129,6 +129,9 @@ plt.show()
 ```
 ![Pie](Images/bar.jpg)
 
+## Model Training: Logistic Regression
+Initializes and trains a Logistic Regression model using the training data (X_train and Y_train). The model learns the relationship between the features and the target variable.
+
 ```bash
 model = LogisticRegression()
 model.fit(X_train, Y_train)
@@ -139,9 +142,40 @@ Y_pred = model.predict(X_test)
 ```
 **Evaluate the model**
 ```bash
-print("Accuracy:", accuracy_score(Y_test, Y_pred))
+# Evaluate the model
+accuracy_lr = accuracy_score(Y_test, Y_pred)
+print(f"Logistic Regression Accuracy: {accuracy_lr:.2f}")
 
+#Precision score: the ratio of correctly predicted positive observations to the total predicted positives
+print("Precision:", precision_score(Y_test, Y_pred, average='weighted'))
+
+#Recall score: the ratio of correctly predicted positives to all observations in the actual class
+print("Recall:", recall_score(Y_test, Y_pred, average='weighted'))
+
+#F1 Score: the harmonic mean of precision and recall, balancing both metrics
+print("F1 Score:", f1_score(Y_test, Y_pred, average='weighted'))
 ```
+**Confusion Matrix**
+The confusion matrix tells you how many predictions were correct or incorrect:
+- True Positive (TP): Correctly predicted "Real" articles.
+- True Negative (TN): Correctly predicted "Fake" articles.
+- False Positive (FP): Incorrectly predicted "Real" for a "Fake" article.
+- False Negative (FN): Incorrectly predicted "Fake" for a "Real" article.
+  
+```bash
+# Generate confusion matrix
+cm = confusion_matrix(Y_test, Y_pred)
+import seaborn as sns
+
+# Plot confusion matrix
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['No Cancer', 'Cancer'], yticklabels=['No Cancer', 'Cancer'])
+plt.title('Confusion Matrix - Lung Cancer Prediction')
+plt.xlabel('Predicted')
+plt.ylabel('True')
+plt.savefig('confusion matrix.png')
+plt.show()
+```
+![Confusion_Matrix](Images/confusion matrix.png)
 
 ## How to Use
 1. Clone this repository:
