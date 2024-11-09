@@ -12,8 +12,11 @@ To run this notebook, ensure you have the following libraries installed:
 - `numpy` - For numerical operations
 - `scikit-learn` - For machine learning tasks
 ## Key Features
-Accuracy: Achieves an accuracy of 90.32% on the survey lung cancer dataset.
-Technologies Used: Python, Scikit-Learn, Pandas, and other data science libraries.
+Utilized multiple models, achieving the following accuracies: 
+- Logistic Regression - 90.3%
+- Decision Tree - 90.0%
+- Random Forest - 92.0%
+- SVM - 84.0%.
 
 ## Dataset
 The dataset includes a variety of features related to lung cancer risk factors:
