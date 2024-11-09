@@ -194,8 +194,12 @@ plt.show()
 ```
 ![Report](Images/Lr%20report.png)
 
+
+
 ## Model Training: Decision Tree
+
 This code trains a Decision Tree model and tests its performance on the data, showing accuracy and other important metrics. It creates a classification report with precision, recall, and F1-score for each class, then visualizes these metrics as a heatmap. The heatmap makes it easy to see how well the model is doing for each class.
+
 ```bash
 # Train the Decision Tree model
 from sklearn.tree import DecisionTreeClassifier
@@ -214,6 +218,7 @@ Output:
 ```bash
 Decision Tree Accuracy: 0.90
 ```
+
 **Classification Report: detailed metrics for each class, including precision, recall, F1 score, and support:**
 
 ```bash
@@ -227,7 +232,158 @@ plt.title('Classification Report - Decision Tree Model')
 plt.savefig('DT report.png')
 plt.show()
 ```
+![DT](Images/DT%20report.png) 
+
+## Model Training: Confusion Matrix
+
+The confusion matrix helps you see where the model makes correct and incorrect predictions, making it easier to understand its strengths and weaknesses across different classes.
+
+```bash
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Generate the confusion matrix
+cm = confusion_matrix(Y_test, Y_pred_dt)
+
+# Plot the confusion matrix as a heatmap
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False)
+plt.xlabel('Predicted Class')
+plt.ylabel('Actual Class')
+plt.title('Confusion Matrix - Decision Tree Model')
+plt.savefig('DT confusion matrix.png')
+plt.show()
+```
 ![DT](Images/DT%20confusion%20matrix.png)
+
+```bash
+# Model Training: Random Forest
+
+# Train the Random Forest model
+model_rf = RandomForestClassifier()
+model_rf.fit(X_train, Y_train)
+
+# Make predictions
+Y_pred_rf = model_rf.predict(X_test)
+
+# Evaluate accuracy
+accuracy_rf = accuracy_score(Y_test, Y_pred_rf)
+print(f"Random Forest Accuracy: {accuracy_rf:.2f}")
+```
+output:
+```bash
+Random Forest Accuracy: 0.92
+```
+**Classification Report: detailed metrics for each class, including precision, recall, F1 score, and support:**
+
+```bash
+# Print precision, recall, f1-score, and support report
+report = classification_report(Y_test, Y_pred_rf, output_dict=True)
+
+# Convert the report to a DataFrame for heatmap plotting
+report_df = pd.DataFrame(report).transpose()
+
+# Plot the classification report as a heatmap
+plt.figure(figsize=(10, 6))
+sns.heatmap(report_df.iloc[:-1, :3], annot=True, cmap='Blues', fmt='.2f', cbar=True)
+plt.title('Classification Report - Random Forest Model')
+plt.savefig('RF report.png')
+plt.show()
+```
+![RF](Images/Images/RF%20report.png)
+
+**Confusion Matrix**
+```bash
+# Plot the confusion matrix as a heatmap
+cm = confusion_matrix(Y_test, Y_pred_rf)
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False)
+plt.xlabel('Predicted Class')
+plt.ylabel('Actual Class')
+plt.title('Confusion Matrix - Random Forest Model')
+plt.savefig('RF confusion matrix.png')
+plt.show()
+```
+![RFM](Images/RF%20confusion%20matrix.png)
+
+# Model Training: Support Vector Machine (SVM)
+
+```bash
+from sklearn.svm import SVC
+# Train the SVM model
+model_svm = SVC()
+model_svm.fit(X_train, Y_train)
+
+# Make predictions
+Y_pred_svm = model_svm.predict(X_test)
+
+# Evaluate accuracy
+accuracy_svm = accuracy_score(Y_test, Y_pred_svm)
+print(f"Support Vector Machine Accuracy: {accuracy_svm:.2f}")
+```
+Output:
+```bash
+Support Vector Machine Accuracy: 0.84
+```
+**Classification Report: detailed metrics for each class, including precision, recall, F1 score, and support:**
+
+```bash
+# Print precision, recall, f1-score, and support report
+report = classification_report(Y_test, Y_pred_svm, output_dict=True)
+
+
+# Convert the report to a DataFrame for heatmap plotting
+report_df = pd.DataFrame(report).transpose()
+
+# Plot the classification report as a heatmap
+plt.figure(figsize=(10, 6))
+sns.heatmap(report_df.iloc[:-1, :3], annot=True, cmap='Blues', fmt='.2f', cbar=True)
+plt.title('Classification Report - SVM Model')
+plt.savefig('SVM report.png')
+plt.show()
+```
+![DT](Images/SVM%20report.png)
+
+**Confusion Matrix**
+
+```bash
+# Plot the confusion matrix as a heatmap
+cm = confusion_matrix(Y_test, Y_pred_svm)
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False)
+plt.xlabel('Predicted Class')
+plt.ylabel('Actual Class')
+plt.title('Confusion Matrix - SVM Model')
+plt.savefig('SVM confusion matrix.png')
+plt.show()
+```
+![svm](Images/Images/SVM%20confusion%20matrix.png)
+
+# Model Accuracy Comparison
+```bash
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Model names and their corresponding accuracy values
+models = ['Logistic Regression', 'Decision Tree', 'Random Forest', 'SVM']
+# Update accuracies with the actual accuracy scores
+accuracies = [accuracy_lr, accuracy_dt, accuracy_rf, accuracy_svm]  # Assuming you have accuracy_dt defined
+
+# Check that all accuracies are valid numbers
+print("Accuracies:", accuracies)
+
+# Create a bar chart to visualize the accuracy comparison
+plt.figure(figsize=(8, 6))
+plt.bar(models, accuracies, color=['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728'])
+plt.title('Model Accuracy Comparison')
+plt.xlabel('Model')
+plt.ylabel('Accuracy')
+plt.ylim(0, 1)  # Set y-axis limit to 0 to 1 (accuracy range)
+plt.savefig('accuracy.jpg')
+plt.show()
+```
+![Comparison](Images/accuracy.jpg)
 
 ## How to Use
 1. Clone this repository:
