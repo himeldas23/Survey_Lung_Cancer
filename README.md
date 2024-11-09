@@ -97,11 +97,14 @@ X
 **After Label Encoding:**
 ![Gender](Images/Gender.png)
 
+**Checking Null Values**
 ```bash
 # Check for any remaining non-numeric values or NaN
 print(X.isnull().sum())  # Check for missing values
 print(X.dtypes)  # Check data types again
 ```
+![Null_values](Images/Nul_values.png)
+
 **Modeling:**
 - Split the data into training and test sets.
 - Train a logistic regression model on the training data.
