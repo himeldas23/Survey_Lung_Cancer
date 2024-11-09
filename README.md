@@ -234,7 +234,7 @@ plt.show()
 ```
 ![DT](Images/DT%20report.png) 
 
-## Model Training: Confusion Matrix
+**Confusion Matrix**
 
 The confusion matrix helps you see where the model makes correct and incorrect predictions, making it easier to understand its strengths and weaknesses across different classes.
 
@@ -257,9 +257,9 @@ plt.show()
 ```
 ![DT](Images/DT%20confusion%20matrix.png)
 
-```bash
-# Model Training: Random Forest
+## Model Training: Random Forest
 
+```bash
 # Train the Random Forest model
 model_rf = RandomForestClassifier()
 model_rf.fit(X_train, Y_train)
@@ -291,7 +291,7 @@ plt.title('Classification Report - Random Forest Model')
 plt.savefig('RF report.png')
 plt.show()
 ```
-![RF](Images/Images/RF%20report.png)
+![RF](Images/RF%20report.png)
 
 **Confusion Matrix**
 ```bash
