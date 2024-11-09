@@ -78,7 +78,8 @@ X=df.iloc[:,0:15]
 Y=df.iloc[:,-1]
 ```
 **Target variable**
-![Alt Text](Images/target variable.png)
+
+![Target variable](Images/target%20variable.png)
 
 **Preprocessing:**
 - Label encode the Gender column.
