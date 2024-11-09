@@ -177,6 +177,58 @@ plt.show()
 ```
 ![CM](Images/confusion%20matrix.png)
 
+**Classification Report: detailed metrics for each class, including precision, recall, F1 score, and support:**
+
+```bash
+report = classification_report(Y_test, Y_pred, output_dict=True)
+
+# Convert the classification report to a DataFrame
+report_df = pd.DataFrame(report).transpose()
+
+# Plot the classification report as a heatmap
+plt.figure(figsize=(8, 6))
+sns.heatmap(report_df.iloc[:-1, :].T, annot=True, cmap='Blues', fmt='.2f', cbar=True)
+plt.title('Classification Report - Lung Cancer Prediction')
+plt.savefig('Lr report.png')
+plt.show()
+```
+![Report](Images/Lr%20report.png)
+
+## Model Training: Decision Tree
+This code trains a Decision Tree model and tests its performance on the data, showing accuracy and other important metrics. It creates a classification report with precision, recall, and F1-score for each class, then visualizes these metrics as a heatmap. The heatmap makes it easy to see how well the model is doing for each class.
+```bash
+# Train the Decision Tree model
+from sklearn.tree import DecisionTreeClassifier
+
+model_dt = DecisionTreeClassifier()
+model_dt.fit(X_train, Y_train)
+
+# Make predictions
+Y_pred_dt = model_dt.predict(X_test)
+
+# Evaluate accuracy
+accuracy_dt = accuracy_score(Y_test, Y_pred_dt)
+print(f"Decision Tree Accuracy: {accuracy_dt:.2f}")
+```
+Output:
+```bash
+Decision Tree Accuracy: 0.90
+```
+**Classification Report: detailed metrics for each class, including precision, recall, F1 score, and support:**
+
+```bash
+# Print precision, recall, f1-score, and support report
+report = classification_report(Y_test, Y_pred_dt)
+
+# Plot the classification report as a heatmap
+plt.figure(figsize=(10, 6))
+sns.heatmap(report_df.iloc[:-1, :3], annot=True, cmap='Blues', fmt='.2f', cbar=True)
+plt.title('Classification Report - Decision Tree Model')
+plt.savefig('DT report.png')
+plt.show()
+```
+![DT](Images/DT%20confusion%20matrix.png)
+
 ## How to Use
 1. Clone this repository:
 ```bash
