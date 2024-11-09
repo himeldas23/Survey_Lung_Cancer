@@ -123,7 +123,6 @@ print("Accuracy:", accuracy_score(Y_test, Y_pred))
 
 ```
 
-
 ## How to Use
 1. Clone this repository:
 ```bash
