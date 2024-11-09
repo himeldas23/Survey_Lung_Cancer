@@ -77,6 +77,9 @@ df.shape
 X=df.iloc[:,0:15]
 Y=df.iloc[:,-1]
 ```
+**Target variable**
+![Alt Text](Images/target variable.png)
+
 **Preprocessing:**
 - Label encode the Gender column.
 - Check for and handle any missing values.
