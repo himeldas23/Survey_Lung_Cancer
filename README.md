@@ -88,7 +88,7 @@ Y=df.iloc[:,-1]
 - Label encode the Gender column.
 - Check for and handle any missing values.
   
-##Encoding
+## Encoding
 Converts the categorical "GENDER" column in the X DataFrame into numerical values using Label Encoding. The LabelEncoder() from sklearn.preprocessing is used to assign a unique integer to each category (e.g., "Male" = 0, "Female" = 1). This transformation is stored back in the "GENDER" column of X.
 
 ```bash
